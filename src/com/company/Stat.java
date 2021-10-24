@@ -1,11 +1,11 @@
 package com.company;
 
 public class Stat {
-    private String zkratkaStatu;
-    private String nazevStatu;
-    private double zakladniSazba;
-    private double snizenaSazba;
-    private boolean parkingRate;
+    public String zkratkaStatu;
+    public String nazevStatu;
+    public double zakladniSazba;
+    public double snizenaSazba;
+    public boolean parkingRate;
 
     public Stat(String zkratkaStatu, String nazevStatu, double zakladniSazba, double snizenaSazba, boolean parkingRate) {
         this.zkratkaStatu = zkratkaStatu;
@@ -14,6 +14,24 @@ public class Stat {
         this.snizenaSazba = snizenaSazba;
         this.parkingRate = parkingRate;
     }
+
+    public Stat(String zkratkaStatuStr, String nazevStatuStr, String zakladniSazbaStr, String snizenaSazbaStr, String parkingRateStr) throws ModelException {
+        this.zkratkaStatu = zkratkaStatuStr;
+        this.nazevStatu = nazevStatuStr;
+        try {
+            this.zakladniSazba = Double.parseDouble(zakladniSazbaStr);
+        }catch (NumberFormatException ex) {
+            throw new ModelException("Spatne zadane cislo zakladni sazby:"+ex.getLocalizedMessage());
+        }
+        try {
+            this.snizenaSazba = Double.parseDouble(snizenaSazbaStr);
+        } catch (NumberFormatException ex) {
+            throw new ModelException("Spatne zadane cislo snizene sazby:"+ex.getLocalizedMessage());
+        }
+
+        this.parkingRate = Boolean.parseBoolean(parkingRateStr);
+    }
+
 
     public String getZkratkaStatu() {
         return zkratkaStatu;

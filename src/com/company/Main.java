@@ -13,7 +13,7 @@ public class Main {
         try {
             stat = Model.importFromTextFile(FILENAME);
         } catch (ModelException e) {
-            System.err.println("Nepodarilo se nacist data ze souboru" + e.getMessage());
+            System.err.println("Nepodarilo se nacist data ze souboru. " + e.getMessage());
         }
         System.out.println("Vlozte limit sazby DPH:");
         Scanner input = new Scanner(System.in);
