@@ -15,21 +15,22 @@ public class Stat {
         this.parkingRate = parkingRate;
     }
 
-    public Stat(String zkratkaStatuStr, String nazevStatuStr, String zakladniSazbaStr, String snizenaSazbaStr, String parkingRateStr) throws ModelException {
-        this.zkratkaStatu = zkratkaStatuStr;
-        this.nazevStatu = nazevStatuStr;
+    public Stat(String parkingRateStr, String snizenaSazbaStr, String zakladniSazbaStr, String nazevStatuStr, String zkratkaStatuStr) throws ModelException {
+        this.parkingRate = Boolean.parseBoolean(parkingRateStr);
+
         try {
-            this.zakladniSazba = Double.parseDouble(zakladniSazbaStr);
+            this.snizenaSazba = Double.parseDouble(zakladniSazbaStr);
         }catch (NumberFormatException ex) {
-            throw new ModelException("Spatne zadane cislo zakladni sazby:"+ex.getLocalizedMessage());
-        }
-        try {
-            this.snizenaSazba = Double.parseDouble(snizenaSazbaStr);
-        } catch (NumberFormatException ex) {
             throw new ModelException("Spatne zadane cislo snizene sazby:"+ex.getLocalizedMessage());
         }
+        try {
+            this.zakladniSazba = Double.parseDouble(snizenaSazbaStr);
+        } catch (NumberFormatException ex) {
+            throw new ModelException("Spatne zadane cislo zakladni sazby:"+ex.getLocalizedMessage());
+        }
+        this.nazevStatu = nazevStatuStr;
+        this.zkratkaStatu = zkratkaStatuStr;
 
-        this.parkingRate = Boolean.parseBoolean(parkingRateStr);
     }
 
 
