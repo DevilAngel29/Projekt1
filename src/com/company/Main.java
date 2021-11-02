@@ -19,7 +19,8 @@ public class Main {
         Scanner input = new Scanner(System.in);
         double limit = input.nextDouble();
         ArrayList<Stat> vypisStaty = stat.splnujeKriteria(limit);
-        System.out.println("Staty s limitem pod: " + limit + ":");
+
+        System.out.println("Staty s limitem nad: " + limit + ":");
         for (Stat s : vypisStaty) {
             System.out.println(s.getNazevStatu() + " (" + s.getZakladniSazba() + " %)");
         }

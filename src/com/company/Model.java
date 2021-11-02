@@ -22,7 +22,9 @@ public class Model {
 
 
 
-                //System.out.println(inputLine); // testovaci
+                System.out.println(stat.vypis());
+
+
             }
         } catch (FileNotFoundException ex) {
             throw new ModelException("Soubor"+ fileName+" nenalezen:"+ex.getLocalizedMessage());

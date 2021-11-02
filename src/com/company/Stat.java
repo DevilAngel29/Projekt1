@@ -74,8 +74,13 @@ public class Stat {
         this.parkingRate = parkingRate;
     }
 
+    public String vypis(){
+        String getVypis = (nazevStatu + "("+zkratkaStatu+")"+ zakladniSazba +"%");
+        return getVypis;
+    }
+
     @Override
     public String toString() {
-        return "Sazba-"+zkratkaStatu+nazevStatu+zakladniSazba+snizenaSazba+parkingRate;
+        return vypis();
     }
 }
