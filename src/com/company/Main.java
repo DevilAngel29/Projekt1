@@ -22,7 +22,7 @@ public class Main {
 
         System.out.println("Staty s limitem nad: " + limit + ":");
         for (Stat s : vypisStaty) {
-            System.out.println(s.getNazevStatu() + " (" + s.getZakladniSazba() + " %)");
+            System.out.println(s.vypis());
         }
     }
 }
