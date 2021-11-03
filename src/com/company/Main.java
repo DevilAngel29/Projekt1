@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         Model stat = new Model();
+
         try {
             stat = Model.importFromTextFile(FILENAME);
         } catch (ModelException e) {
@@ -22,7 +23,7 @@ public class Main {
 
         System.out.println("Staty s limitem nad: " + limit + ":");
         for (Stat s : vypisStaty) {
-            System.out.println(s.vypis());
+            System.out.println(s.zkratkaStatu +"("+ s.getZakladniSazba()+"%)");
         }
     }
 }

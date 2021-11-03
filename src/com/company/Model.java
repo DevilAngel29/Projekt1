@@ -13,16 +13,25 @@ public class Model {
     public static Model importFromTextFile(String fileName) throws ModelException{
         Model model = new Model();
         try (Scanner scanner = new Scanner(new FileInputStream(fileName))) {
-            while(scanner.hasNextLine()){
+            while(scanner.hasNextLine()) {
                 String inputLine = scanner.nextLine();
                 String[] polozky = inputLine.split("\t");
-                if(polozky.length !=5) throw new ModelException("Nespravny pocet polozek na radku:"+inputLine+polozky.length);
-                Stat stat = new Stat(polozky[4],polozky[3],polozky[2],polozky[1],polozky[0]);
-
-
+                if (polozky.length != 5)
+                    throw new ModelException("Nespravny pocet polozek na radku:" + inputLine + polozky.length);
+                Stat stat = new Stat(polozky[4], polozky[3], polozky[2], polozky[1], polozky[0]);
 
 
                 System.out.println(stat.vypis());
+
+
+                double limit = 20;
+                if (stat.zakladniSazba >= limit) System.out.println(stat.vypis());
+
+
+
+
+
+
 
 
             }
@@ -31,6 +40,7 @@ public class Model {
         }
         return model;
     }
+
     public ArrayList<Stat> splnujeKriteria(double limit) {
         ArrayList<Stat> result = new ArrayList<>();
         for (Stat stat : list) {
