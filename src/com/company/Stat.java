@@ -19,12 +19,12 @@ public class Stat {
         this.parkingRate = Boolean.parseBoolean(parkingRateStr);
 
         try {
-            this.snizenaSazba = Double.parseDouble(zakladniSazbaStr);
+            this.snizenaSazba = Double.parseDouble(snizenaSazbaStr);
         }catch (NumberFormatException ex) {
             throw new ModelException("Spatne zadane cislo snizene sazby:"+ex.getLocalizedMessage());
         }
         try {
-            this.zakladniSazba = Double.parseDouble(snizenaSazbaStr);
+            this.zakladniSazba = Double.parseDouble(zakladniSazbaStr);
         } catch (NumberFormatException ex) {
             throw new ModelException("Spatne zadane cislo zakladni sazby:"+ex.getLocalizedMessage());
         }

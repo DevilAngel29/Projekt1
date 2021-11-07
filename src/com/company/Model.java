@@ -1,16 +1,13 @@
 package com.company;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Model {
-     ArrayList<Stat> list = new ArrayList<>();
+     ArrayList<Stat> statDph = new ArrayList<>();
 
-    public static Model importFromTextFile(String fileName) throws ModelException{
+    public Model importFromTextFile(String fileName) throws ModelException{
         Model model = new Model();
         try (Scanner scanner = new Scanner(new FileInputStream(fileName))) {
             while(scanner.hasNextLine()) {
@@ -19,19 +16,8 @@ public class Model {
                 if (polozky.length != 5)
                     throw new ModelException("Nespravny pocet polozek na radku:" + inputLine + polozky.length);
                 Stat stat = new Stat(polozky[4], polozky[3], polozky[2], polozky[1], polozky[0]);
-
-
+                statDph.add(stat);
                 System.out.println(stat.vypis());
-
-
-                double limit = 20;
-                if (stat.zakladniSazba >= limit) System.out.println(stat.vypis());
-
-
-
-
-
-
 
 
             }
@@ -41,10 +27,11 @@ public class Model {
         return model;
     }
 
+
     public ArrayList<Stat> splnujeKriteria(double limit) {
         ArrayList<Stat> result = new ArrayList<>();
-        for (Stat stat : list) {
-            if ( stat.getZakladniSazba() > limit) {
+        for (Stat stat : statDph) {
+            if ( stat.zakladniSazba > limit) {
                 result.add(stat);
             }
         }
