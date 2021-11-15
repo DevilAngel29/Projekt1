@@ -1,8 +1,7 @@
 package com.company;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Model {
     public static final String TAB = "\t";
@@ -30,12 +29,13 @@ public class Model {
     public void exportToFile(String filename) throws ModelException {
         try (PrintWriter writer = new PrintWriter(new FileOutputStream(filename))) {
             for (Stat stat : statDph) {
-                writer.println(
-                        stat.getZkratkaStatu()+ TAB
-                        +stat.getNazevStatu()+ TAB
-                        +stat.getZakladniSazba()+ TAB
-                        +stat.getSnizenaSazba()+ TAB
-                        +stat.parkingRate);
+                writer.println(stat);
+                        //stat.getZkratkaStatu()+ TAB
+                        //+stat.getNazevStatu()+ TAB
+                        //+stat.getZakladniSazba()+ TAB
+                        //+stat.getSnizenaSazba()+ TAB
+                        //+stat.parkingRate);
+
             }
         } catch (FileNotFoundException e) {
             throw new ModelException("Soubor "+filename+" nenalezen: "+e.getLocalizedMessage());
@@ -53,6 +53,7 @@ public class Model {
         return result;
     }
 
+
     public ArrayList<Stat> nesplnujeKriteria(double limit) {
         ArrayList<Stat> result = new ArrayList<>();
 
@@ -63,5 +64,4 @@ public class Model {
         }
         return result;
     }
-
 }

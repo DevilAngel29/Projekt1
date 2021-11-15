@@ -1,7 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -15,25 +14,30 @@ public class Main {
             System.err.println("Nepodarilo se nacist data ze souboru. " + e.getMessage());
         }
 
-        try {
-            model.exportToFile(FILENAME);
-        } catch (ModelException e) {
-            System.err.println("Nepodarilo se nacist data do souboru. " + e.getMessage());
-        }
         System.out.println("Vlozte limit sazby DPH:");
         Scanner input = new Scanner(System.in);
         double limit = input.nextDouble();
         System.out.println();
-        ArrayList<Stat> vypisStaty = model.splnujeKriteria(limit);
-        System.out.println("Staty s limitem nad " + limit + "% a nepouziva specialni sazbu z dane:");
+        List<Stat> vypisStaty = model.splnujeKriteria(limit);
+        Collections.addAll(vypisStaty);
+        Collections.reverse(vypisStaty);
+        System.out.println("Staty, ktere maji zakladni sazbu dane z pridane hodnoty vyssi nez " + "  % a pritom nepouzivaji specialni sazbu dane:");
         for (Stat s: vypisStaty) {
-            System.out.println(s.nazevStatu +"("+ s.getZakladniSazba()+"%)");
+            System.out.println(s.nazevStatu +" ("+ s.zkratkaStatu + "): " + s.getZakladniSazba()+" %");
         }
 
+        System.out.println("====================");
+
         ArrayList<Stat> nesplnuje = model.nesplnujeKriteria(limit);
-        System.out.println("Staty s limitem pod " + limit + "% nebo pouzivaji specialni sazbu z dane:");
+        System.out.print("Sazba DPH " +limit+ " % nebo nizsi nebo pouzivaji specialni sazbu:");
         for (Stat s: nesplnuje) {
-            System.out.println(s.zkratkaStatu);
+            System.out.print(s.zkratkaStatu+", ");
+        }
+
+        try {
+            model.exportToFile("vat-over-20.txt");
+        } catch (ModelException e) {
+            System.err.println("Nepodarilo se nacist data do souboru. " + e.getMessage());
         }
 
     }

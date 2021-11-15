@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Stat {
     public String zkratkaStatu;
     public String nazevStatu;
@@ -75,9 +78,10 @@ public class Stat {
     }
 
     public String vypis(){
-        String getVypis = (nazevStatu + "("+zkratkaStatu+")"+ zakladniSazba +"%");
+        String getVypis = (nazevStatu + " ("+zkratkaStatu+"): "+ zakladniSazba +" % ");
         return getVypis;
     }
+
 
     @Override
     public String toString() {
